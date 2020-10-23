@@ -25,6 +25,11 @@ int _putstr(va_list args)
 
 	str = va_arg(args, char *);
 	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[i])
 		write(1, &str[i++], 1);
 	return (i);
@@ -47,10 +52,9 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i++] != '%')
 		{
 			j = 0;
-			i++;
 			while (ops[j].op)
 			{
 				if (ops[j].op == format[i])
