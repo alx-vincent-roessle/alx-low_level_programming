@@ -27,7 +27,7 @@ int _putstr(va_list args)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
-	return i;
+	return (i);
 }
 
 int _printf(const char *format, ...)
@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 			{
 				if (ops[j].op == format[i])
 				{
-					res +=ops[j].f(args);
+					res += ops[j].f(args);
 				}
 				j++;
 			}
