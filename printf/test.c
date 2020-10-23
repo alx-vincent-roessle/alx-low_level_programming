@@ -35,10 +35,9 @@ int _printf(const char *format, ...)
 	int i;
 	int j;
 	int res;
-
-	res = 0;
 	va_list args;
-
+	
+	res = 0;
 	op_t ops[] = {
 		{'c', _putchar},
 		{'s', _putstr},
