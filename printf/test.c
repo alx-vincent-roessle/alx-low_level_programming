@@ -61,8 +61,10 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
+		{
 			_putchar2(format[i]);
 			res++;
+		}
 		i++;
 	}
 	return (res);
