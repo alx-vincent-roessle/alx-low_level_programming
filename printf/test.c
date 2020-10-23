@@ -4,12 +4,13 @@
 #include <stdarg.h>
 #include "holberton.h"
 
-void _putchar(va_list args)
+int _putchar(va_list args)
 {
 	char c;
 
 	c = va_arg(args, int);
 	write(1, &c, 1);
+	return (1);
 }
 
 void _putchar2(char c)
@@ -17,7 +18,7 @@ void _putchar2(char c)
 	write(1, &c, 1);
 }
 
-void _putstr(va_list args)
+int _putstr(va_list args)
 {
 	int i;
 	char *str;
@@ -26,12 +27,16 @@ void _putstr(va_list args)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
+	return i;
 }
 
 int _printf(const char *format, ...)
 {
 	int i;
 	int j;
+	int res;
+
+	res = 0;
 	va_list args;
 
 	op_t ops[] = {
@@ -51,14 +56,15 @@ int _printf(const char *format, ...)
 			{
 				if (ops[j].op == format[i])
 				{
-					ops[j].f(args);
+					res +=ops[j].f(args);
 				}
 				j++;
 			}
 		}
 		else
 			_putchar2(format[i]);
+			res++;
 		i++;
 	}
-	return (0);
+	return (res);
 }
